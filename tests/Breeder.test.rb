@@ -20,15 +20,14 @@ class TestBreeder < Minitest::Test
   end
 
   def test_mate_length_three_arrays
-    expected = [2, 1, 2]
+    expected = [1.6467558908171132, -31.37397886223291, 1.89676747423067]
     res = breeder.mate([1, 1, 1], [2, 2, 2])
     assert_equal(expected, res)
   end
 
   def test_mutation_can_occur
-    parent = (1..200).to_a
-    expected = parent.clone
-    expected[50] = 72.94414980175213
+    parent = (1..7).to_a
+    expected = [0.8967674742306699, 2, 3, 4, 5.378117436390945, 17.046751017840222, 7]
     res = breeder.mate(parent, parent)
     assert_equal(expected, res)
   end

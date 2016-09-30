@@ -9,10 +9,10 @@ class TestNeuralNode < Minitest::Test
   end
 
   def test_one_length_array
-    assert_equal(NeuralNode.new([1], [1]).value, 1)
+    assert_equal(NeuralNode.new([1], [1]).value, 0.7310585786300049)
   end
 
   def test_three_length_array
-    assert_equal(NeuralNode.new([1,2,3], [3,2,1]).value, 10)
+    assert_equal(NeuralNode.new([1,2,3], [3,2,1]).value, 0.9999546021312976)
   end
 end
