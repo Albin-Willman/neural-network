@@ -1,0 +1,57 @@
+#!/usr/bin/env ruby
+
+require_relative './Trainer'
+require_relative './DataReader'
+require_relative './ImagePrinter'
+
+# shape = [3, 1]
+# inputs = 2
+
+# trainer = Trainer.new(inputs, shape)
+
+# training_data = [
+#   Struct::Example.new([0], [1, 1]),
+#   Struct::Example.new([0], [1, 1]),
+#   Struct::Example.new([0], [1, 1]),
+
+#   Struct::Example.new([1], [1, 0]),
+#   Struct::Example.new([1], [0, 1]),
+#   Struct::Example.new([0], [0, 0])
+# ]
+
+# net = trainer.exercise(training_data, 10_000, 0.01)
+
+
+# puts net.calculate([0, 0])
+# puts net.calculate([0, 1])
+# puts net.calculate([1, 0])
+# puts net.calculate([1, 1])
+# puts '************'
+
+# puts net.weights
+
+reader = DataReader.new
+
+data = reader.run('./data/mnist/train.csv', 1_010)
+
+training_data = data[0..1000]
+verification = data[1000..1010]
+
+shape = [250, 4]
+inputs = training_data[0].inputs.length
+
+trainer = Trainer.new(inputs, shape)
+
+net = trainer.exercise(training_data, 100, 0.05)
+
+puts net.weights
+
+printer = ImagePrinter.new
+
+verification.each do |example|
+  puts "*******************"
+  puts "Expected: #{example.expected}"
+  puts "*******************"
+  puts "Result: #{net.calculate(example.inputs)}"
+  printer.run(example.inputs)
+end

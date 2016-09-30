@@ -1,0 +1,6 @@
+
+ruby ./nn/tests/NeuralNode.test.rb
+ruby ./nn/tests/NeuralNet.test.rb
+ruby ./nn/tests/TrainingUtilities.test.rb
+ruby ./nn/tests/Breeder.test.rb
+ruby ./nn/tests/Spawner.test.rb
